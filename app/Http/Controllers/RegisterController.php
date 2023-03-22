@@ -42,7 +42,7 @@ class RegisterController extends Controller
 
        //redirecccionar
 
-       return redirect()->route('posts.index');
+       return redirect()->route('posts.index', $request->username);
     }
     
 }

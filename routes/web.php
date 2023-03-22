@@ -24,44 +24,42 @@ use App\Http\Controllers\PerfilController;
 |
 */
 
-Route::get('/',HomeController::class)->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 
-Route::get('/crear-cuenta',[RegisterController::class,'index'])->name('register');
-Route::post('/crear-cuenta',[RegisterController::class,'store']);
+Route::get('/crear-cuenta', [RegisterController::class, 'index'])->name('register');
+Route::post('/crear-cuenta', [RegisterController::class, 'store']);
 
-Route::get('/login',[LoginController::class,'index'])->name('login');
-Route::post('/login',[LoginController::class,'store']);
-Route::post('/logout',[LogoutController::class,'store'])->name('logout');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store']);
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 //rutas para el perfil
-Route::get('/editar-perfil',[PerfilController::class,'index'])->name('perfil.index');
-Route::post('/editar-perfil',[PerfilController::class,'store'])->name('perfil.store');
+Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
 
 //personalizando la url
-Route::get('/{user:username}',[PostController::class,'index'])->name('posts.index');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
 
 //post
-Route::get('/posts/create',[PostController::class,'create'])->name('posts.create');
-Route::post('/post',[PostController::class,'store'])->name('posts.store');
-Route::get('/{user:username}/posts/{post}',[PostController::class,'show'])->name('posts.show');
-Route::delete('/posts/{post}',[PostController::class,'destroy'])->name('posts.destroy');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/post', [PostController::class, 'store'])->name('posts.store');
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::get('/posts/edit/{post}',[PostController::class,'edit'])->name('posts.edit');
-Route::put('/post/{post}',[PostController::class,'update'])->name('posts.update');
+Route::get('/posts/edit/{post}', [PostController::class, 'edit'])->name('posts.edit');
+Route::put('/post/{post}', [PostController::class, 'update'])->name('posts.update');
 
 //imagen
-Route::post('/imagenes',[ImagenController::class,'store'])->name('imagenes.store');
+Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 
 //COMENTARIO
-Route::post('/{user:username}/posts/{post}',[ComentarioController::class,'store'])->name('comentarios.store');
+Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 
 //like fotos
-Route::post('/posts/{post}/likes',[LikeController::class,'store'])->name('posts.likes.store');
-Route::delete('/posts/{post}/likes',[LikeController::class,'destroy'])->name('posts.likes.destroy');
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
 //suguiendo usuarios 
 
-Route::post('/{user:username}/follow',[FollowerController::class,'store'])->name('users.follow');
-Route::delete('/{user:username}/unfollow',[FollowerController::class,'destroy'])->name('users.unfollow');
-
- 
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow');
