@@ -37,7 +37,24 @@ class PostController extends Controller
       'imagen'      => 'required',
     ]);
 
-    Post::create([
+    // Primera forma de crear los post
+    /* Post::create([
+        'titulo' => $request->titulo,
+        'descripcion' => $request->descripcion,
+        'imagen' => $request->imagen,
+        'user_id' => auth()->user()->id
+    ]); */
+
+    // Segunda forma de crear los post
+    /* $post = new Post;
+    $post->titulo = $request->titulo;
+    $post->descripcion = $request->descripcion;
+    $post->imagen = $request->imagen;
+    $post->user_id = auth()->user()->id;
+    $post->save(); */
+
+    // Tercera forma Almacenando el Post con una relación
+    $request->user()->posts()->create([
       'titulo'      => $request->titulo,
       'descripcion' => $request->descripcion,
       'imagen'      => $request->imagen,
@@ -83,11 +100,10 @@ class PostController extends Controller
     $this->authorize('delete', $post);
 
     $post->delete();
-    //eliminar la imagen
+    // Eliminar la imagen
     $imagen_path = public_path('uploads/' . $post->imagen);
 
-    if (File::exists($imagen_path))
-    {
+    if (File::exists($imagen_path)) {
       unlink($imagen_path);
     }
 
