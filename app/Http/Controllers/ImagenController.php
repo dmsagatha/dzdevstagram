@@ -24,9 +24,9 @@ class ImagenController extends Controller
     $imagenPath = public_path('uploads') . '/' . $nombreImagen;
     $imagenServidor->save($imagenPath); */
 
-
     $imagen = $request->file('file');
     
+    // Si no existe crear el directorio
     if (!is_dir($this->imagen_path)) {
       mkdir($this->imagen_path);
     }

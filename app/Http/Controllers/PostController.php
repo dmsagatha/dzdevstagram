@@ -100,6 +100,7 @@ class PostController extends Controller
     $this->authorize('delete', $post);
 
     $post->delete();
+    
     // Eliminar la imagen
     $imagen_path = public_path('uploads/' . $post->imagen);
 
